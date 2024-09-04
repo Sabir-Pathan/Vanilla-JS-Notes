@@ -1,6 +1,12 @@
 // return keyword
 // this keyword
-
+// constructor function - aiyesa func jis ko call karte waqt new keyword ka use hota ho.
+// prototype - aisi property jo constructor function ke har ek object ke prototype me available ho. or oose use karsake.
+// closure -- aiyesa func jo return karta hai ek or func or o used karta hai parent func ka kohi variable ose closer kahete hai.
+// event delegation -- kisi ke parent element pe event lagao or tag , id , class name ke basis pe unko target karo or diffrent 
+// task perform karo.
+// higher order fnc -- aiyesa fnc jo parameter me ek fnc accept kare ya return kare kohi fnc aiyese parent fnc ko higher order fnc kahete hai.
+// try and catch -- error ko handle karne keliye use hote hai
 
 
 
@@ -132,9 +138,114 @@
 
 // constructor function -------- new black object
 
-let constructorFunc = ()=>{
+// aisa function ji ko call karte samaye new keywork ka use kiya jaye to o ek blank object (constructor)
+// bana ta hai. function new keyword ka use karke use object me value add kar sakte hai.
+// note : constructor function declair karne ke liye normal function ES-5 wale function ka use hota hai.
+// arrow function ki help se construction function nahi bana sakte.
 
-    console.log(this);
+
+// function constructorFunc (){
+
+// this.name = 'sabir'
+  
+//     surname = 'Pathan';
     
-}
-new constructorFunc();
+// }
+// let result = new constructorFunc();
+// console.log(result);
+
+
+// function constFunc (firstName,lastName){
+//     this.Fname = firstName;
+//     this.Lname = lastName;
+// }
+// console.log(new constFunc ('Sabir',31));
+// console.log(new constFunc ('Muaaz',4)); 
+
+
+// +++++++++++++ prototype +++++++++++++++++
+// aiyesi property jo constructor function ke object me na ho lekin constructor function se banane wale sabhi object oos 
+// property ko use kar sake. isliye oos property ko prototype me add kiya jata hai.
+
+// function constFunc (firstName,lastName){
+//     this.Fname = firstName;
+//     this.Lname = lastName;
+// }
+// constFunc.prototype.printMyName = function(){
+//     console.log(this.firstName);
+    
+// }
+// console.log(new constFunc ('Sabir','Pathan'));
+// console.log(new constFunc ('Muaaz','Pathan')); 
+
+
+// +++++++++++++++++++++ closure +++++++++++++++++++++
+
+// let parentFnc = ()=>{
+
+//     let i = 21;
+
+//     return ()=>{
+// i++;
+// console.log(i);
+
+//     }
+// }
+// let ans = parentFnc(); // ans me return kiya huva fnc store hai.
+// ans()
+
+
+
+// ++++++++++++++++ Event delegation ++++++++++++
+
+// let parent = document.querySelector('.parent');
+// parent.addEventListener('click', (e)=>{
+//     if(e.target.id === 'play'){
+//         console.log('play songs');
+        
+//     }
+//     else if(e.target.id === 'pause'){
+//         console.log('pause songs');
+        
+//     }
+// })
+
+// +++++++++++ higher order function ++++++++++++
+// function hofn (para){
+//     console.log('hello')
+//     console.log(para);
+    
+    
+
+// }
+
+// hofn( ()=>{
+    
+//     console.log('argument');
+    
+// })
+
+// let arr = [10,20,30,40]
+
+// arr.forEach((elem) => { //foreach ek higher order function hai q ki o ek function accept kar raha hai.
+//     console.log(elem);
+    
+// });
+
+
+// +++++++++++++ try catch ++++++++++++++++
+// try {
+//     // Yeh code run karne ki koshish karega
+//     let result = 10 / 0; // Yeh example ke liye hai; zero se divide karna usually error nahi hai
+//     console.log("Result is:", result);
+
+//     // Ek deliberate error create karte hain
+//     let x = y + 10; // y undefined hai, isliye error aayegi
+
+// } catch (error) {
+//     // Agar upar ke block mein koi error hoti hai, to yeh block run hoga
+//     console.log("An error occurred:", error.message);
+// } finally {
+//     // Yeh block hamesha run hoga, chahe error aaye ya nahi
+//     console.log("This will always execute");
+// }
