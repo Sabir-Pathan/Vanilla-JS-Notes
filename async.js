@@ -40,11 +40,68 @@
 
 // ++++++++++++++ fetch () +++++++++++++
 
+// fetch('https://randomuser.me/api/')
+//     .then((response) =>{
+        
+//       return response.json() // received data readable format me nahi hota hai, ese json format me convert karna padta hai. 
+//         })
+//     .then((data) => {
+//     return console.log(data) // response ko data me accept kar ke hum use kar sakte hai.
+//     });
+
+
+    // ++++++++++++++ axios.get() +++++++++++++
+
+// axios.get('https://randomuser.me/api/')
+
+// .then((data) => {
+// return console.log(data) 
+// });// received data direct use kar sakte hai. axios.get() method me usesable format (json) me data milta hai. is liye sirf ek bar .then() method ka use hota hai. //axios.get() method use karne keliye html me cdn patha dena zaruri hota hai nahi to hum axios.get() method use nahi kar sakte erro aayenga.<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+// ++++++++++++++ new promise() +++++++++++++
+
+//  url (API) se jada mangaya jata hai oos ki teen state hoti hai.
+// Pending: Jab promise create hota hai aur abhi tak resolved ya rejected nahi hua.
+// Fulfilled: Jab operation successful ho jata hai aur result mil jata hai.
+// Rejected: Jab operation fail ho jata hai aur error aati hai.
+
+// jo bhi data aayenga use ek variable me save karna padenga.
+// promise ek fnc accept kar ta hai or 2 parameter accept karta hai jo 2 state ke bareme hoti hai ek to request resolve hongi ya to reject hongi. data aayenga ya to fir nahi aayenga. ye 2 parameter ek method(fnc) hote hai.
+
+let result = new Promise ((resolve , reject)=>{
+
 fetch('https://randomuser.me/api/')
     .then((response) =>{
         
       return response.json() // received data readable format me nahi hota hai, ese json format me convert karna padta hai. 
         })
     .then((data) => {
-    return console.log(data) // response ko data me accept kar ke hum use kar sakte hai.
+    //  console.log(data.results[0].gender) // response ko data me accept kar ke hum use kar sakte hai. yaha received data me ek object hai is me 1 results name se array mila ji me oos ke 0 index me ek object mila ji ki kohi bhi property accept kar sakte hai.
+  if((data.results[0].gender)=== "male"){ // received data me gender male hai to ye code chalenga. yani jo chahte the o result mila is liye 
+    resolve();  
+  }
+  else{
+    reject();
+  } 
+  
+
     });
+});
+
+// console.log(result); //result hamesh pending state me dikhayenga q ke promise ek async code hai to o side stack me jayenga or ye wala jo console.log hai or synchronous code hai isliye ye pahele chalenga.
+
+// ab aaya huva out put sahi honga ya to galat honga is basis pe hume humara kam karna honga. aaya huva data result name ke variable me store kiya huva hai. agar result true honga to hum .then() method chalayenge nahi to .catch() method chalayenge.
+// dono bhi method ek function accept karte hai.
+
+result
+.then( ()=>{
+
+  console.log('male user aaya request resolve huvi');
+} )
+.catch(()=>{
+  console.log('female user aayi request reject huvi');
+  
+})
+
+
