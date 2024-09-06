@@ -8,6 +8,7 @@
 // 4)axios - kisi url (API) se data lana ho ya bhejna ho,same as fetch ki tara hi hai fark sirf itna hai ki ye thoda userfriendly hai.
 // 5)Promise - promise ke andhar jo code likha jata hai o code callback queb me move ho jata hai or jab code execute hota hai to oose code main stack me laya jata hai.
 
+//callback - ayesa fnc jo pass kiya jata hai as argument or oose accept kiya jata hai as parameter. jab fnc call kiya jata hai or o fnc chalta hai to callback fnc ko oos fnc ke andhar call kiya ja ta hai.
 
 
 // +++++++++ setTimeOut +++++++++
@@ -69,39 +70,73 @@
 // jo bhi data aayenga use ek variable me save karna padenga.
 // promise ek fnc accept kar ta hai or 2 parameter accept karta hai jo 2 state ke bareme hoti hai ek to request resolve hongi ya to reject hongi. data aayenga ya to fir nahi aayenga. ye 2 parameter ek method(fnc) hote hai.
 
-let result = new Promise ((resolve , reject)=>{
+// let result = new Promise ((resolve , reject)=>{
 
-fetch('https://randomuser.me/api/')
-    .then((response) =>{
+// fetch('https://randomuser.me/api/')
+//     .then((response) =>{
         
-      return response.json() // received data readable format me nahi hota hai, ese json format me convert karna padta hai. 
-        })
-    .then((data) => {
-    //  console.log(data.results[0].gender) // response ko data me accept kar ke hum use kar sakte hai. yaha received data me ek object hai is me 1 results name se array mila ji me oos ke 0 index me ek object mila ji ki kohi bhi property accept kar sakte hai.
-  if((data.results[0].gender)=== "male"){ // received data me gender male hai to ye code chalenga. yani jo chahte the o result mila is liye 
-    resolve();  
-  }
-  else{
-    reject();
-  } 
+//       return response.json() // received data readable format me nahi hota hai, ese json format me convert karna padta hai. 
+//         })
+//     .then((data) => {
+//     //  console.log(data.results[0].gender) // response ko data me accept kar ke hum use kar sakte hai. yaha received data me ek object hai is me 1 results name se array mila ji me oos ke 0 index me ek object mila ji ki kohi bhi property accept kar sakte hai.
+//   if((data.results[0].gender)=== "male"){ // received data me gender male hai to ye code chalenga. yani jo chahte the o result mila is liye 
+//     resolve();  
+//   }
+//   else{
+//     reject();
+//   } 
   
 
-    });
-});
+//     });
+// });
 
-// console.log(result); //result hamesh pending state me dikhayenga q ke promise ek async code hai to o side stack me jayenga or ye wala jo console.log hai or synchronous code hai isliye ye pahele chalenga.
+// // console.log(result); //result hamesh pending state me dikhayenga q ke promise ek async code hai to o side stack me jayenga or ye wala jo console.log hai or synchronous code hai isliye ye pahele chalenga.
 
-// ab aaya huva out put sahi honga ya to galat honga is basis pe hume humara kam karna honga. aaya huva data result name ke variable me store kiya huva hai. agar result true honga to hum .then() method chalayenge nahi to .catch() method chalayenge.
-// dono bhi method ek function accept karte hai.
+// // ab aaya huva out put sahi honga ya to galat honga is basis pe hume humara kam karna honga. aaya huva data result name ke variable me store kiya huva hai. agar result true honga to hum .then() method chalayenge nahi to .catch() method chalayenge.
+// // dono bhi method ek function accept karte hai.
 
-result
-.then( ()=>{
+// result
+// .then( ()=>{
 
-  console.log('male user aaya request resolve huvi');
-} )
-.catch(()=>{
-  console.log('female user aayi request reject huvi');
+//   console.log('male user aaya request resolve huvi');
+// } )
+// .catch(()=>{
+//   console.log('female user aayi request reject huvi');
+  
+// })
+
+
+// ++++++++++++++++++++++ callback ++++++++++++++++++++++
+
+// ayesha fnc jo pass kiya jata hai dusre fnc me oose callback kahte hai.
+
+// function abcd (val1 , callbackfnc){ // parameter me ek value or ek fnc accept kiya gaya hai.
+// callbackfnc(); // callback fnc ko call kiya gaya hai.
+// }
+// abcd(20 , ()=>{ // yaha abcd fnc ko call kiya hai or oos me ek value or ek fnc pass kiya gaya hai. is fnc ko callback fnc kahete hai.
+//   console.log('callback chala');
+  
+// });
+
+// exapmle:-
+// iska use mainly use tab hota hai jab aync code exicute hota hai.
+
+function someAsyncode (url , callbackfnc) { // yaha as parameter ek url or ek callback fnc accept kiya ja raha hai
+fetch(url) // parameter me jo url received hone vala hai o fetch me accept kiya ja raha hai.
+.then((rowdata) => rowdata.json()) // received data ko .then method me accept kiya gaya or oose json format me convert kar ke ,then() me store kiya gaya hai.
+
+.then((result) =>
+  //isme jo first wali .then() method ne jo json format wala data return kiya tha o rowdata ko result name ke parameter me accept kiya hai. or ab .then ke parameter ke result parameter me url ka data store hai.
+  {
+    // console.log(result)
+
+    callbackfnc( result)//yaha callback function ko call kar ke oos me result wale data ko pass kiya hai jo url se data mila hai.
+  })
+}
+
+someAsyncode( `https://randomuser.me/api/`, (result)=>{ // yaha se someAsyncode fnc ko call kiya gaya hai jime ek url or ek callback function bheja gaya hai. jo callback fnc hai o ek parameter accept kar raha hai jis me jo url se aaya huva data accept kiya gaya hai or oos result me aaye data se kuch kam karwa sakte hai. note => parameter ka name kuch bhi rakh sakte hai. or callback fnc ka code ayesa likhna hai ke data aachuka hai ye man kar.
+
+  console.log(`Name: ${result.results[0].name.first}, Gender : ${result.results[0].gender} , Email : ${result.results[0].email}`);
+  // result me ek object mila hai results name se or oos me ek hi object hai 0 index  pe or is object ke hum data ko accept kar sakte hai.
   
 })
-
-
