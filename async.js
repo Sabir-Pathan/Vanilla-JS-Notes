@@ -6,9 +6,18 @@
 // 2)setInterval - aiyesa code jo kuch time bad barbar chalana ho.jabtab nahi rukenga tab ise na roke. rok nekeliye  clearInterval() ka used kiya jata hai hai or setInterval ka name pass kiya jata hai.
 // 3)fetch API - kisi url or (API) se data lana ho ya bhejna ho.aaye huve data ko .then() method me accept karte hai. .then() ko (callback function) bhi kahe sakte hai q ke .then () ek function accept karta as a argument. oos function ke parameter me API or url ko store kar ta hai.
 // 4)axios - kisi url (API) se data lana ho ya bhejna ho,same as fetch ki tara hi hai fark sirf itna hai ki ye thoda userfriendly hai.
-// 5)Promise - promise ke andhar jo code likha jata hai o code callback queb me move ho jata hai or jab code execute hota hai to oose code main stack me laya jata hai.
+// 5)Promise - promise ke andhar jo code likha jata hai o code callback queb me move ho jata hai or jab code execute hota hai to oose code ko main stack me laya jata hai.
 
 //callback - ayesa fnc jo pass kiya jata hai as argument or oose accept kiya jata hai as parameter. jab fnc call kiya jata hai or o fnc chalta hai to callback fnc ko oos fnc ke andhar call kiya ja ta hai.
+
+// async await - jab bhi kisi function ke aaghe async likha jata hai to wo ek asynchronus code banjata hai.
+// or oos fnc me kuch ayesa code likha jaye jo synchronous ho or oose without asynchronous wale code complete hone kebad chalana ho to oos link ke aaghe await likhna padenga.
+
+// event loom -
+
+// generators -
+
+// webworker -
 
 
 // +++++++++ setTimeOut +++++++++
@@ -121,22 +130,58 @@
 // exapmle:-
 // iska use mainly use tab hota hai jab aync code exicute hota hai.
 
-function someAsyncode (url , callbackfnc) { // yaha as parameter ek url or ek callback fnc accept kiya ja raha hai
-fetch(url) // parameter me jo url received hone vala hai o fetch me accept kiya ja raha hai.
-.then((rowdata) => rowdata.json()) // received data ko .then method me accept kiya gaya or oose json format me convert kar ke ,then() me store kiya gaya hai.
+// function someAsyncode (url , callbackfnc) { // yaha as parameter ek url or ek callback fnc accept kiya ja raha hai
+// fetch(url) // parameter me jo url received hone vala hai o fetch me accept kiya ja raha hai.
+// .then((rowdata) => rowdata.json()) // received data ko .then method me accept kiya gaya or oose json format me convert kar ke ,then() me store kiya gaya hai.
 
-.then((result) =>
-  //isme jo first wali .then() method ne jo json format wala data return kiya tha o rowdata ko result name ke parameter me accept kiya hai. or ab .then ke parameter ke result parameter me url ka data store hai.
-  {
-    // console.log(result)
+// .then((result) =>
+//   //isme jo first wali .then() method ne jo json format wala data return kiya tha o rowdata ko result name ke parameter me accept kiya hai. or ab .then ke parameter ke result parameter me url ka data store hai.
+//   {
+//     // console.log(result)
 
-    callbackfnc( result)//yaha callback function ko call kar ke oos me result wale data ko pass kiya hai jo url se data mila hai.
-  })
-}
+//     callbackfnc( result)//yaha callback function ko call kar ke oos me result wale data ko pass kiya hai jo url se data mila hai.
+//   })
+// }
 
-someAsyncode( `https://randomuser.me/api/`, (result)=>{ // yaha se someAsyncode fnc ko call kiya gaya hai jime ek url or ek callback function bheja gaya hai. jo callback fnc hai o ek parameter accept kar raha hai jis me jo url se aaya huva data accept kiya gaya hai or oos result me aaye data se kuch kam karwa sakte hai. note => parameter ka name kuch bhi rakh sakte hai. or callback fnc ka code ayesa likhna hai ke data aachuka hai ye man kar.
+// someAsyncode( `https://randomuser.me/api/`, (result)=>{ // yaha se someAsyncode fnc ko call kiya gaya hai jime ek url or ek callback function bheja gaya hai. jo callback fnc hai o ek parameter accept kar raha hai jis me jo url se aaya huva data accept kiya gaya hai or oos result me aaye data se kuch kam karwa sakte hai. note => parameter ka name kuch bhi rakh sakte hai. or callback fnc ka code ayesa likhna hai ke data aachuka hai ye man kar.
 
-  console.log(`Name: ${result.results[0].name.first}, Gender : ${result.results[0].gender} , Email : ${result.results[0].email}`);
-  // result me ek object mila hai results name se or oos me ek hi object hai 0 index  pe or is object ke hum data ko accept kar sakte hai.
+//   console.log(`Name: ${result.results[0].name.first}, Gender : ${result.results[0].gender} , Email : ${result.results[0].email}`);
+//   // result me ek object mila hai results name se or oos me ek hi object hai 0 index  pe or is object ke hum data ko accept kar sakte hai.
   
-})
+// })
+
+// ++++++++++++ async await +++++++++++++
+
+//  function asyn() {
+//   console.log('hello1');
+//   let data = fetch (`https://randomuser.me/api/`) //ye ek async code hai.
+
+//   console.log('hello2');
+// console.log(data); // yaha jo data variable hai o ek async code hold kar raha jo ek promise hai. or console.log() ek synchronous code hai. yaha fetch wala code side stack pe jayenga or baki code exicute hojayenga ji ki waja se data ka status pending rahenga
+
+// console.log('hello3');
+
+
+// }
+// asyn()
+
+// async function asyn() {
+//   console.log('hello1');
+//   let data = await fetch (`https://randomuser.me/api/`) //ye ek async code hai. fir bhi jabtak ye code exicute na hojaye aaghe ki line nahi chalengi q k is fnc ke aaghe async or is line ke aaghe await lagaya hai.
+
+//   console.log('hello2');
+//  console.log(data); // ab is line me data milenga q ke fetch() ke aaghe await likha tha.
+
+// console.log('hello3');
+
+
+// }
+// asyn()
+
+
+abcd1()
+let abcd1 = function abcd (){
+    let x = 2;
+    console.log(x);
+    
+}
