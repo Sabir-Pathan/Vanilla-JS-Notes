@@ -2,7 +2,11 @@ let users =[
     {
         srNo:1,
         name:'rohit',
-        age:20,        
+        age:20,   
+        hobbies: [
+            { name: 'Cricket', level: 'Expert' },
+            { name: 'Cooking', level: 'Beginner' }
+          ]     
     },
     {
         srNo:2,
@@ -11,14 +15,18 @@ let users =[
         address:{
             country :'India'
         },
-        skills: ['JavaScript', 'HTML', 'CSS']
+        skills: ['JavaScript', 'HTML', 'CSS'],
+        hobbies: [
+            { name: 'Swimming', level: 'Intermediate' }
+          ]
     },
     {
         srNo:3,
         name:'amar',
         age:16, 
         city:'Pune',  
-        skills: ['Python', 'Django']     
+        skills: ['Python', 'Django'],
+        hobbies: []     
     },
     {
         srNo:4,
@@ -125,3 +133,34 @@ let users =[
 
 // showUserDetails(users)
 
+// #####################################################################################
+// 6)display user data on webpage skills and hobbies
+
+function showUserDetails (users){
+    let userDetail = document.getElementById('userdata');
+
+    return users.map(user=>{
+        // console.log(user);
+
+        let city = user.city ? user.city : 'N/A';
+        let country = user.address && user.address.country ? user.address.country : 'N/A';
+        let skills = user.skills ? user.skills : 'N/A';
+        let hobbies = user.hobbies && user.hobbies.length > 0 ? user.hobbies.map(hobby=>`${hobby.name} `).join(',') : 'N/A';
+        let level = user.hobbies && user.hobbies.length > 0 ? user.hobbies.map(hobby=>`${hobby.level} `).join(',') : 'N/A';
+
+        userDetail.innerHTML +=`<tr>
+<td>${user.srNo}</td>
+<td>${user.name}</td>
+<td>${user.age}</td>
+<td>${city}</td>
+<td>${country}</td>
+<td>${skills}</td>
+<td>${hobbies}</td>
+ <td>${level}</td>
+
+</tr>` 
+        
+    });
+};
+
+showUserDetails(users)
