@@ -10,13 +10,15 @@ let users =[
         age:17,
         address:{
             country :'India'
-        }
+        },
+        skills: ['JavaScript', 'HTML', 'CSS']
     },
     {
         srNo:3,
         name:'amar',
         age:16, 
-        city:'Pune'       
+        city:'Pune',  
+        skills: ['Python', 'Django']     
     },
     {
         srNo:4,
@@ -74,22 +76,52 @@ let users =[
 // #################################################################################
 // 4)show users detail on webpage in table format
 
-function userDetail (users){
-    let userData = document.getElementById('userdata')
-    return users.map(user =>{
-        // console.log(user);
-let city = user.city ? user.city:'N/A';
-let country = user.address && user.address.country ? user.address.country:'N/A';
-userData.innerHTML += `<tr>
-<td> ${user.srNo}</td>
-<td> ${user.name.toUpperCase()}</td>
-<td> ${user.age}</td>
-<td> ${city}</td>
-<td> ${country}</td>
-</tr>`;
+// function userDetail (users){
+//     let userData = document.getElementById('userdata')
+//     return users.map(user =>{
+//         // console.log(user);
+// let city = user.city ? user.city:'N/A';
+// let country = user.address && user.address.country ? user.address.country:'N/A';
+// userData.innerHTML += `<tr>
+// <td> ${user.srNo}</td>
+// <td> ${user.name.toUpperCase()}</td>
+// <td> ${user.age}</td>
+// <td> ${city}</td>
+// <td> ${country}</td>
+// </tr>`;
 
-    })
-}
+//     })
+// }
 
-userDetail(users)
+// userDetail(users)
+
+// ############################################################################################
+
+// 5)Display userdetail on webpage skills if vailable
+
+// function showUserDetails (user){
+//     let userdetails = document.getElementById('userdata');
+
+//     return users.map(user=>{
+// // console.log(user);
+
+// let city = user.city ? user.city:'N/A';
+// let country = user.address && user.address.country ? user.address.country:'N/A';
+// let skills = user.skills ? user.skills:'No skill';
+// // console.log(user.name);
+
+// userdetails.innerHTML +=`<tr>
+// <td>${user.srNo}</td>
+// <td>${user.name}</td>
+// <td>${user.age}</td>
+// <td>${city}</td>
+// <td>${country}</td>
+// <td>${skills}</td>
+// </tr>`
+
+
+//     })
+// }
+
+// showUserDetails(users)
 
