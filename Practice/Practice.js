@@ -204,6 +204,9 @@ let arr = ['string1','string4','string5','Mango','string2','string3','Apple2'];
 // console.log(arr);
 
 
+
+// ################################################
+// show employe data on web page using forEach loop
 let employees = [
     {name:'Rohan', age: 25, jobTitle: 'Software Developer'},
     {name:'Abrar', age: 23, jobTitle: 'Android Developer'},
@@ -228,18 +231,5 @@ function displayEmployeeData(employees) {
     });
 }
 
-// Function to sort employees by age
-function sortByAge(employees) {
-    employees.sort((a, b) => a.age - b.age);
-    displayEmployeeData(employees); // Re-display sorted data
-}
 
-// Initial display of employee data
-displayEmployeeData(employees);
-
-// Sorting on button click
-let sortBtn = document.getElementById('sort');
-sortBtn.addEventListener('click', () => {
-    console.log('Sorting by age...');
-    sortByAge(employees);
-});
+    displayEmployeeData(employees);
